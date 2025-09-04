@@ -11,6 +11,7 @@ export default function ProductOverViewPage() {
 	const [product, setProduct] = useState(null);
 	const navigate = useNavigate();
 	const [status, setStatus] = useState("loading"); //loading, success, error
+
 	useEffect(() => {
 		if (status === "loading") {
 			axios
@@ -27,35 +28,45 @@ export default function ProductOverViewPage() {
 		}
 	}, [status]);
 
+	// Helper to make sure image path starts with "/"
+	const formatImages = (images) => {
+		if (!images) return [];
+		return images.map((img) =>
+			img.startsWith("/") ? img : "/" + img
+		);
+	};
+
 	return (
 		<div className="w-full h-full">
-			{status == "loading" && <Loader />}
-			{status == "success" && (
-				<div className="w-full h-full flex flex-col md:flex-row ">
+			{status === "loading" && <Loader />}
+			{status === "success" && product && (
+				<div className="w-full h-full flex flex-col md:flex-row">
 					<h1 className="text-2xl my-4 text-center font-bold md:hidden">
 						{product.name}{" "}
 						<span className="font-light">{product.altNames.join(" | ")}</span>
 					</h1>
 
-					<div className="w-full md:w-[49%] h-full flex flex-col justify-center items-center ">
-						<ImageSlider images={product.images} />
+					<div className="w-full md:w-[49%] h-full flex flex-col justify-center items-center">
+						<ImageSlider images={formatImages(product.images)} />
 					</div>
-					<div className="w-full md:w-[49%] h-full flex flex-col items-center pt-[50px] ">
+
+					<div className="w-full md:w-[49%] h-full flex flex-col items-center pt-[50px]">
 						<h1 className="text-2xl font-bold hidden md:block">
 							{product.name}{" "}
 							<span className="font-light">{product.altNames.join(" | ")}</span>
 						</h1>
 						<p className="text-lg p-2">{product.description}</p>
+
 						<div className="w-full flex flex-col items-center mt-[20px]">
 							{product.labelledPrice > product.price ? (
 								<div>
-									<span className="text-2xl font-semibold  line-through mr-[20px]">
+									<span className="text-2xl font-semibold line-through mr-[20px]">
 										{product.labelledPrice.toLocaleString("en-US", {
 											minimumFractionDigits: 2,
 											maximumFractionDigits: 2,
 										})}
 									</span>
-									<span className="text-3xl font-bold ">
+									<span className="text-3xl font-bold">
 										{product.price.toLocaleString("en-US", {
 											minimumFractionDigits: 2,
 											maximumFractionDigits: 2,
@@ -64,7 +75,7 @@ export default function ProductOverViewPage() {
 								</div>
 							) : (
 								<div>
-									<span className="text-3xl font-bold ">
+									<span className="text-3xl font-bold">
 										{product.price.toLocaleString("en-US", {
 											minimumFractionDigits: 2,
 											maximumFractionDigits: 2,
@@ -73,7 +84,8 @@ export default function ProductOverViewPage() {
 								</div>
 							)}
 						</div>
-						<div className="w-full flex flex-row justify-center items-center mt-[20px]  gap-[10px]">
+
+						<div className="w-full flex flex-row justify-center items-center mt-[20px] gap-[10px]">
 							<button
 								onClick={() => {
 									navigate("/checkout", {
@@ -83,7 +95,7 @@ export default function ProductOverViewPage() {
 													productId: product.productId,
 													quantity: 1,
 													name: product.name,
-													image: product.images[0],
+													image: formatImages(product.images)[0],
 													price: product.price,
 												},
 											],
@@ -108,7 +120,7 @@ export default function ProductOverViewPage() {
 					</div>
 				</div>
 			)}
-			{status == "error" && <div>Error loading product</div>}
+			{status === "error" && <div>Error loading product</div>}
 		</div>
 	);
 }
