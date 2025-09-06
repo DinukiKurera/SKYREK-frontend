@@ -8,7 +8,7 @@ export default function Header() {
 	const navigate = useNavigate();
 	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<header className="h-[100px] bg-accent flex justify-center items-center relative">
+		<header className="h-[100px] bg-blue-900 flex justify-center items-center relative">
 			{isOpen && (
 				<div className="fixed z-[100] top-0 right-0 w-[100vw] h-[100vh] bg-[#00000050]">
 					<div className="h-full w-[350px] bg-white flex flex-col">
