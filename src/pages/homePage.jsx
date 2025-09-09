@@ -1,4 +1,5 @@
 import Header from "../components/header"; 
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -9,21 +10,21 @@ export default function HomePage() {
       <main className="flex-grow">
    
       <div className="mt-4 px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="shadow-lg p-5 rounded-xl text-center">
+        <Link to={"/overview/COSM007"}  className="shadow-lg p-5 rounded-xl text-center">
           <img src="/blush powder.jpg" alt="powder" className="w-full h-60 object-cover rounded-lg"/>
           <h2 className="mt-2 text-xl font-semibold">Blush Powder</h2>
           <p className="text-gray-600">Rs. 1,400.00</p>
-        </div>
-        <div className="shadow-lg p-5 rounded-xl text-center">
+        </Link>
+        <Link to={"/overview/COSM002"} className="shadow-lg p-5 rounded-xl text-center">
           <img src="/face_cream.webp" alt="Cream" className="w-full h-60 object-cover rounded-lg"/>
           <h2 className="mt-2 text-xl font-semibold">Hydrating Face Cream</h2>
           <p className="text-gray-600">Rs. 2,200.00</p>
-        </div>
-        <div className="shadow-lg p-5 rounded-xl text-center">
+        </Link>
+        <Link to={"/overview/COSM010"} className="shadow-lg p-5 rounded-xl text-center">
           <img src="/nailpolish.webp" alt="Perfume" className="w-full h-60 object-cover rounded-lg"/>
           <h2 className="mt-2 text-xl font-semibold">Nail Polish</h2>
           <p className="text-gray-600">Rs. 650.00</p>
-        </div>
+        </Link>
       </div>
 
   

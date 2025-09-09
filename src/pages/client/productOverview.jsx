@@ -6,6 +6,7 @@ import ImageSlider from "../../components/imageSlider";
 import { addToCart, getCart } from "../../utils/cart";
 import toast from "react-hot-toast";
 
+
 export default function ProductOverViewPage() {
 	const params = useParams();
 	const [product, setProduct] = useState(null);
