@@ -3,6 +3,7 @@ import "./App.css";
 import HomePage from "./pages/homePage";
 import AboutUsPage from "./pages/aboutusPage";
 import LoginPage from "./pages/loginPage";
+import ReviewPage from "./pages/reviewsPage";
 import ContactUsPage from "./pages/contactusPage";
 import RegisterPage from "./pages/registerPage";
 import AdminPage from "./pages/adminPage";
@@ -26,6 +27,7 @@ function App() {
 						<Route path="/contact-us" element={<ContactUsPage />} />
                         <Route path="/login" element={<LoginPage />} />
 						<Route path="/test" element={<TestPage />} />
+						<Route path="/reviews" element={<ReviewPage />} />
 						<Route path="/register" element={<RegisterPage />} />
 						<Route path="/admin/*" element={<AdminPage />} />
 						<Route path="/forget" element={<ForgetPasswordPage/>}/>
