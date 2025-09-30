@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import axios from "axios";
-import Header from "../components/header";   // keep as your project's header import
-import Loader from "../components/loader";   // keep as your loader import
+import Header from "../components/header";   
+import Loader from "../components/loader";   
 
 export default function ReviewsPage() {
   const [productIdInput, setProductIdInput] = useState(""); // the search input
@@ -34,8 +34,7 @@ export default function ReviewsPage() {
     }
   }
 
-  // optional: try to load product info if you have a products API (best effort)
-  // Will attempt GET /api/products/:productId then fallback to /api/products/search/:productId
+  
   async function fetchProductInfo(productId) {
     try {
       // try exact product endpoint first
@@ -155,7 +154,7 @@ export default function ReviewsPage() {
   return (
     <div className="flex flex-col min-h-screen w-full">
       <Header />
-      <div className="mt-20 px-10">
+      <div className="px-10">
       {/* Search area */}
       <div className="w-full h-[110px] flex items-center justify-center bg-white shadow-sm px-4">
         <div className="flex items-center gap-3">
@@ -199,7 +198,7 @@ export default function ReviewsPage() {
               <div className="w-[100px] h-[100px] rounded-lg bg-white flex items-center justify-center overflow-hidden border">
                 {/* product image if available, else show productId */}
                 {productInfo?.image ? (
-                  <img src={productInfo.image} alt={productInfo?.name || selectedProductId} className="w-full h-full object-cover" />
+                  <ImageSlider images={formatImages(product.images)} className="w-full h-full object-cover" />
                 ) : (
                   <div className="text-lg font-semibold">{selectedProductId}</div>
                 )}
